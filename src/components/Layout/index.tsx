@@ -6,6 +6,7 @@ type LayoutProps = {
 
 const Container = styled.div`
 height: 100vh;
+
 `;
 
 const Layout = (props: LayoutProps) => {
