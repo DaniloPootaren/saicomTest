@@ -1,11 +1,17 @@
-import Routes from "./routes";
+import { useEffect } from "react";
 
-function App() {
+import Routes from "./routes";
+import { watchHttpResponses } from "./utils/http";
+
+const App = () => {
+  
+  useEffect(watchHttpResponses, []);
+
   return (
     <div className="App">
       <Routes />
     </div>
   );
-}
+};
 
 export default App;
