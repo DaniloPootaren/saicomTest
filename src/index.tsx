@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import { store } from "./store";
 import App from "./App";
-import GlobalStyle from "./utils/globalCss";
+import GlobalStyle from "./utils/styles/globalCss";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
