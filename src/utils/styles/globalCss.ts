@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import NunitoSansRegular from "../assets/fonts/NunitoSans-Regular.ttf"
+import NunitoSansRegular from "../../assets/fonts/NunitoSans-Regular.ttf"
 
 export default createGlobalStyle`
 
