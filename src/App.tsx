@@ -4,7 +4,6 @@ import Routes from "./routes";
 import { watchHttpResponses } from "./utils/http";
 
 const App = () => {
-  
   useEffect(watchHttpResponses, []);
 
   return (
