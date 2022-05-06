@@ -4,7 +4,9 @@ type LayoutProps = {
   children: any;
 };
 
-const Container = styled.div``;
+const Container = styled.div`
+height: 100vh;
+`;
 
 const Layout = (props: LayoutProps) => {
   const { children } = props;
