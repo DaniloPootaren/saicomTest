@@ -1,7 +1,7 @@
 import Layout from "../../components/Layout";
 
 const Home = () => {
-  return <Layout>Home Page</Layout>;
+  return <Layout showHeader headerTitle="Customer Details">Home Page</Layout>;
 };
 
 export default Home;
