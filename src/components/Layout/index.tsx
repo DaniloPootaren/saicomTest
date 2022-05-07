@@ -20,6 +20,7 @@ const Container = styled.div`
 const Body = styled.div`
   flex: 11;
   overflow-y: scroll;
+  padding: 0 10% 0 10%;
 `;
 
 const Header = styled.div`

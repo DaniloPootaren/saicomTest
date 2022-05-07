@@ -18,9 +18,9 @@ const Container = styled.div`
 
 const InputComponent = styled.input`
   padding: 13px 10px 0 10px;
-  max-width: 100%;
   margin: 0 5px 0 5px;
   height: 51px;
+  width: 100%;
   border: 1px solid ${colors.grey};
   outline: none;
   font-size: 15px;
