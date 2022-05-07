@@ -1,3 +1,5 @@
+
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import {device} from "../../utils/styles/breakpoints"
 
@@ -12,10 +14,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
+  width: 100vw;
 `;
 
 const Body = styled.div`
-  background-color: red;
   flex: 11;
   overflow-y: scroll;
 `;
@@ -45,15 +47,25 @@ const Footer = styled.div`
 
 const Layout = (props: LayoutProps) => {
   const { children, showFooter, showHeader, headerTitle } = props;
+  // const [webFontsLoaded, setWebFontsLoaded] = useState(false)
 
   const renderHeader = () => {
     return <Header><h3>{headerTitle}</h3></Header>
   }
 
+  useEffect(()=>{
+    // async function fontLoaded() {
+    //   await (document as any).fonts.ready
+    //   setWebFontsLoaded(true)
+    // }
+  },[])
+
+
+
   return (
     <Container>
       {showHeader && renderHeader()}
-      <Body>Body</Body>
+      <Body>{children}</Body>
       {showFooter && <Footer>Footer</Footer>}
     </Container>
   );
