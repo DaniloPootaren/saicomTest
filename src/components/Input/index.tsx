@@ -13,7 +13,7 @@ interface InputProps extends InputHTMLAttributes<any> {
 const Container = styled.div`
   position: relative;
   height: 39px;
-  margin: 10px;
+  margin: 20px 0 20px 0;
 `;
 
 const InputComponent = styled.input`
@@ -51,10 +51,8 @@ const InputComponent = styled.input`
     top: 10px;
   }
 
-  &:valid {
-    ${(props: { error: boolean }) =>
-      props.error && `border-bottom: 2px solid ${colors.red}`}
-  }
+  ${(props: { error: boolean }) =>
+    props.error && `border-bottom: 2px solid ${colors.red}`}
 `;
 const InputLabel = styled.label`
   position: absolute;

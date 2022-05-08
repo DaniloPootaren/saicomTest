@@ -17,7 +17,7 @@ interface DropdownProps extends SelectHTMLAttributes<any> {
 const Container = styled.div`
   position: relative;
   height: 54px;
-  margin: 10px;
+  margin: 20px 0 20px 0;
 `;
 
 const Select = styled.select`
@@ -83,9 +83,10 @@ const Dropdown = (props: DropdownProps) => {
     <Container>
       <div>
         <Select error={error} id={id} {...selectAttrs}>
+          <option value={""} disabled></option>
           {options.map((option, index) => {
             return (
-              <option value="option" key={`${index}-${option}`}>
+              <option value={option} key={`${index}-${option}`}>
                 {option}
               </option>
             );
