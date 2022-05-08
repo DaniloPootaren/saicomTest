@@ -40,7 +40,7 @@ const Select = styled.select`
   }
 
   &:focus {
-    border-bottom: 3px solid ${colors.black};
+    border-bottom: 3px solid ${colors.water_blue};
   }
 
   ${(props: { error: boolean }) =>

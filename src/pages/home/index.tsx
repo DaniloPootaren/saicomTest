@@ -3,6 +3,7 @@ import Dropdown from "../../components/Dropdown";
 import Layout from "../../components/Layout";
 
 import styled from "styled-components";
+import Button from "../../components/Button";
 
 const Container = styled.div`
   display: flex;
@@ -15,17 +16,18 @@ const Home = () => {
       <Container>
         <Input
           label="Name"
-          error={true}
+          error={false}
           errorMessage="Invalid name"
           mandatory
         />
         <Dropdown
           options={options}
-          error={true}
+          error={false}
           id="postal code"
           placeholder="Country"
           errorMessage="Invalid country"
         />
+        <Button label="Continue"/>
       </Container>
     </Layout>
   );

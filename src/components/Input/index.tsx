@@ -43,7 +43,7 @@ const InputComponent = styled.input`
   }
 
   &:focus {
-    border-bottom: 2px solid ${colors.black};
+    border-bottom: 2px solid ${colors.water_blue};
   }
 
   &:valid + label {
