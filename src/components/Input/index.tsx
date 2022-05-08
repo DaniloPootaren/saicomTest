@@ -14,12 +14,13 @@ interface InputProps extends InputHTMLAttributes<any> {
 const Container = styled.div`
   position: relative;
   height: 3em;
+  margin: 10px;
 `;
 
 const InputComponent = styled.input`
-  padding: 13px 10px 0 10px;
+  padding: 13px 10px 0 24px;
   margin: 0 5px 0 5px;
-  height: 51px;
+  height: 45px;
   width: 100%;
   border: 1px solid ${colors.grey};
   outline: none;
@@ -29,7 +30,7 @@ const InputComponent = styled.input`
   ${(props) =>
     props.error &&
     `background: url(${icon}) no-repeat scroll ${colors.light_grey};
-     background-size: 20px;
+
      background-position: right 6% bottom 50%;`}
 
   &:hover {
@@ -44,7 +45,7 @@ const InputComponent = styled.input`
   }
 
   &:focus {
-    border-bottom: 3px solid ${colors.black};
+    border-bottom: 2px solid ${colors.black};
   }
 
   &:valid + label {
@@ -56,13 +57,13 @@ const InputComponent = styled.input`
 
   &:valid {
     ${(props: { error: boolean }) =>
-      props.error && `border-bottom: 3px solid ${colors.red}`}
+      props.error && `border-bottom: 2px solid ${colors.red}`}
   }
 `;
 const InputLabel = styled.label`
   position: absolute;
   color: ${colors.lighter_grey};
-  left: 15px;
+  left: 30px;
   top: 21px;
   font-family: "Nunito Sans Bold";
   transition: top 0.1s;
@@ -70,6 +71,7 @@ const InputLabel = styled.label`
 
 const ErrorMessage = styled.div`
   color: ${colors.red};
+  font-family: "Nunito Sans Bold";
   margin-left: 2px;
   padding: 4px;
   font-size: 0.75rem;

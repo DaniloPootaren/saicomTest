@@ -5,6 +5,9 @@ const Home = () => {
   return (
     <Layout  headerTitle="Customer Details">
       <Input label="Name" error={true} errorMessage="Invalid name" mandatory />
+      <Input label="Name" error={true} errorMessage="Invalid name" mandatory />
+      <Input label="Name" error={true} errorMessage="Invalid name" mandatory />
+      <Input label="Name" error={true} errorMessage="Invalid name" mandatory />
     </Layout>
   );
 };
