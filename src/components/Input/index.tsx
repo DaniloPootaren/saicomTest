@@ -1,6 +1,5 @@
 import { InputHTMLAttributes } from "react";
 import styled from "styled-components";
-import { boolean } from "yup";
 import icon from "../../assets/icons/exclamation.png";
 import { colors } from "../../utils/styles/colors";
 
@@ -13,14 +12,15 @@ interface InputProps extends InputHTMLAttributes<any> {
 
 const Container = styled.div`
   position: relative;
-  height: 3em;
+  height: 39px;
   margin: 10px;
 `;
 
 const InputComponent = styled.input`
-  padding: 13px 10px 0 24px;
+  padding-top: 13px;
   margin: 0 5px 0 5px;
-  height: 45px;
+  text-indent: 20px;
+  height: 39px;
   width: 100%;
   border: 1px solid ${colors.grey};
   outline: none;
@@ -39,9 +39,7 @@ const InputComponent = styled.input`
 
   &:focus + label {
     font-size: 11px;
-    font-weight: 300;
     top: 10px;
-    color: ${colors.black};
   }
 
   &:focus {
@@ -50,9 +48,7 @@ const InputComponent = styled.input`
 
   &:valid + label {
     font-size: 11px;
-    font-weight: 300;
     top: 10px;
-    color: ${colors.black};
   }
 
   &:valid {
@@ -65,7 +61,6 @@ const InputLabel = styled.label`
   color: ${colors.lighter_grey};
   left: 30px;
   top: 21px;
-  font-family: "Nunito Sans Bold";
   transition: top 0.1s;
 `;
 
