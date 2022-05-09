@@ -56,7 +56,7 @@ const AddressForm = (props: AddressFormProps) => {
   const formik = useFormik({
     initialValues: defaultValues,
     onSubmit: (values) => {
-      alert(JSON.stringify(values));
+      api.createAddress(values);
     },
     validationSchema,
     validateOnChange: false,
