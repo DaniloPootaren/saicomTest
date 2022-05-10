@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
@@ -84,7 +84,8 @@ const AddressForm = (props: AddressFormProps) => {
         setProvinces(country.provinces.map((a) => `${a.code}, ${a.name}`));
       }
     });
-  }, [formik.values.country]);
+  }, [formik.values.country, initialValues ? data : null]);
+
 
   return (
     <Container>
@@ -156,7 +157,11 @@ const AddressForm = (props: AddressFormProps) => {
             onChange={formik.handleChange}
             value={formik.values.country}
           />
-          <Button label="Continue" onClick={formik.handleSubmit} disabled={!formik.dirty}/>
+          <Button
+            label="Continue"
+            onClick={formik.handleSubmit}
+            disabled={!formik.dirty}
+          />
         </>
       )}
     </Container>

@@ -3,7 +3,7 @@ import { colors } from "../../utils/styles/colors";
 import icon from "../../assets/icons/chevron-down.png";
 import errorIcon from "../../assets/icons/exclamation.png";
 import { SelectHTMLAttributes } from "react";
-import { string } from "yup";
+
 
 interface DropdownProps extends SelectHTMLAttributes<any> {
   placeholder: string;
