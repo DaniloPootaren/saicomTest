@@ -35,7 +35,7 @@ const AddressForm = (props: AddressFormProps) => {
 
   const { initialValues, callback } = props;
 
-  const defaultValues = initialValues
+  const defaultValues: Address = initialValues
     ? initialValues
     : {
         line1: "",
@@ -85,7 +85,6 @@ const AddressForm = (props: AddressFormProps) => {
       }
     });
   }, [formik.values.country, initialValues ? data : null]);
-
 
   return (
     <Container>
