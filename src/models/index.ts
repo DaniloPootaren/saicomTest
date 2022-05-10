@@ -23,5 +23,20 @@ export type Country = {
 };
 
 export interface Countries {
-  countries: Country[]
+  countries: Country[];
 }
+
+export type ViewAddressesResponeData = {
+  data: Address[];
+  meta?: {
+    itemsPerPage: number;
+    totalItems: number;
+    currentPage: number;
+    totalPages: number;
+  };
+  links?: {
+    current: string,
+    next: string,
+    last: string,
+  };
+};

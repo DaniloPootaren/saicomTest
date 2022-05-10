@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import customerDetailReducer from "./reducers/customer-details";
+import AddressReducer from "./reducers/address-reducer";
 
 export const store = configureStore({
   reducer: {
-      customer: customerDetailReducer
+      address: AddressReducer
   },
 });
 

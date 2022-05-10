@@ -30,27 +30,33 @@ const Select = styled.select`
   outline: none;
   font-size: 15px;
   transition: border-bottom 0.1s;
-
+  ${(props) => props.disabled && `background-color: ${colors.grey};`}
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
 
+  ${(props) =>
+    !props.disabled &&
+    `
   &:hover {
     background-color: ${colors.white};
-  }
+  } 
+  `}
 
   &:focus {
     border-bottom: 3px solid ${colors.water_blue};
   }
 
-  ${(props: { error: boolean }) =>
+  ${(props: { error: boolean; disabled?: boolean }) =>
     props.error
       ? `background: url(${errorIcon}) no-repeat scroll ${colors.light_grey};
      border-bottom: 2px solid ${colors.red};
      background-position: right 6% bottom 50%;`
       : `
      
-     background: url(${icon}) no-repeat right ${colors.light_grey};
+     background: url(${icon}) no-repeat right ${
+          props.disabled ? colors.grey : colors.light_grey
+        };
      background-position: right 15% bottom 50%;
      `}
 `;

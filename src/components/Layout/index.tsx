@@ -1,7 +1,4 @@
 import styled from "styled-components";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import { device } from "../../utils/styles/breakpoints";
 
 type LayoutProps = {
@@ -62,7 +59,7 @@ const Layout = (props: LayoutProps) => {
       {showHeader && renderHeader()}
       <Body>{children}</Body>
       {showFooter && <Footer>Footer</Footer>}
-      <ToastContainer/>
+      
     </Container>
   );
 };

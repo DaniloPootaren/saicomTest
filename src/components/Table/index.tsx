@@ -1,11 +1,15 @@
 import styled from "styled-components";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+// components
 import Modal from "../Modal";
 import AddressForm from "../AddressForm";
-
+// utils, models etc..
 import { Address } from "../../models";
 import { colors } from "../../utils/styles/colors";
+// Redux
+import { fetchAddresses } from "../../store/actions";
+import { RootState } from "../../store";
 
 type TableProps = {};
 
@@ -52,7 +56,7 @@ const EditAddressDialog = (props: any) => {
       children={
         <>
           <h1>{`Update Address`}</h1>
-          <AddressForm initialValues={initialValues} />
+          <AddressForm initialValues={initialValues} callback={onClose} />
         </>
       }
       onClose={onClose}
@@ -87,6 +91,13 @@ const TableRow = (props: TableRowProps) => {
 };
 
 const Table = (_props: TableProps) => {
+  const dispatch = useDispatch();
+  const data = useSelector((store: RootState) => store.address.addresses.data);
+
+  useEffect(() => {
+    dispatch(fetchAddresses(0));
+  }, []);
+
   const headers: string[] = [
     "Address Id",
     "Line 1",
@@ -96,48 +107,6 @@ const Table = (_props: TableProps) => {
     "Postal Code",
     "Province",
     "Suburb",
-  ];
-  const data: Address[] = [
-    {
-      city: "Port Louis",
-      country: "Mauritius",
-      line1: "70 Lot Morc la confiance Beau Bassin",
-      line2: "68 Ave Antelme Quatre Bornes",
-      postalCode: "720563C",
-      province: "Plain Wilhems",
-      suburb: "562",
-      addressId: "121651519815131",
-    },
-    {
-      city: "Port Louis",
-      country: "Mauritius",
-      line1: "70 Lot Morc la confiance Beau Bassin",
-      line2: "68 Ave Antelme Quatre Bornes",
-      postalCode: "720563C",
-      province: "Plain Wilhems",
-      suburb: "562",
-      addressId: "121651519815131",
-    },
-    {
-      city: "Port Louis",
-      country: "Mauritius",
-      line1: "70 Lot Morc la confiance Beau Bassin",
-      line2: "68 Ave Antelme Quatre Bornes",
-      postalCode: "720563C",
-      province: "Plain Wilhems",
-      suburb: "562",
-      addressId: "121651519815131",
-    },
-    {
-      city: "Port Louis",
-      country: "Mauritius",
-      line1: "70 Lot Morc la confiance Beau Bassin",
-      line2: "68 Ave Antelme Quatre Bornes",
-      postalCode: "720563C",
-      province: "Plain Wilhems",
-      suburb: "562",
-      addressId: "121651519815131",
-    },
   ];
 
   return (

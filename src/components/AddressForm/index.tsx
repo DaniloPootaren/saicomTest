@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import Input from "../Input";
 import Dropdown from "../Dropdown";
@@ -11,8 +13,11 @@ import { Address, Country } from "../../models";
 
 import api from "../../api";
 
+import { updateAddress } from "../../store/actions";
+
 type AddressFormProps = {
   initialValues?: Address;
+  callback?: () => void;
 };
 
 const Container = styled.div`
@@ -21,10 +26,14 @@ const Container = styled.div`
 `;
 
 const AddressForm = (props: AddressFormProps) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [data, setData] = useState([]);
+
   const [countryOptions, setCountryOptions] = useState([] as string[]);
   const [provinces, setProvinces] = useState([] as any[]);
-  const { initialValues } = props;
+
+  const { initialValues, callback } = props;
 
   const defaultValues = initialValues
     ? initialValues
@@ -55,8 +64,14 @@ const AddressForm = (props: AddressFormProps) => {
 
   const formik = useFormik({
     initialValues: defaultValues,
-    onSubmit: (values) => {
-      api.createAddress(values);
+    onSubmit: (values): any => {
+      values.addressId
+        ? dispatch(updateAddress(values))
+        : api.createAddress(values).then(() => navigate("/view"));
+
+      if (callback) {
+        callback();
+      }
     },
     validationSchema,
     validateOnChange: false,
@@ -141,7 +156,7 @@ const AddressForm = (props: AddressFormProps) => {
             onChange={formik.handleChange}
             value={formik.values.country}
           />
-          <Button label="Continue" onClick={formik.handleSubmit} />
+          <Button label="Continue" onClick={formik.handleSubmit} disabled={!formik.dirty}/>
         </>
       )}
     </Container>

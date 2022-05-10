@@ -17,18 +17,21 @@ const ButtonComponent = styled.button`
   outline: none;
   border: none;
   color: white;
-  background-color: ${colors.water_blue};
+  background-color: ${(props) =>
+    props.disabled ? colors.grey : colors.water_blue};
   font-family: "Nunito Sans Bold";
   font-size: 17px;
   border-radius: 3px;
   cursor: pointer;
 
+  ${(props) =>
+    !props.disabled &&
+    `
   &:hover {
     background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%)
       center/15000%;
   }
-
-  
+  `}
 `;
 
 const Button = (props: ButtonProps) => {
