@@ -16,7 +16,7 @@ const updateAddress = (id: string, address: Address): Promise<any> => {
 };
 
 const getAllAddresses = (pageNumber?: number) =>{
-  return axios.get(`${BASE_URL}/addresses/?limit=10&page=${pageNumber}`);
+  return axios.get(`${BASE_URL}/addresses?limit=10&page=${pageNumber}`);
 }
 
 export default {

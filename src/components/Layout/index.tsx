@@ -17,7 +17,7 @@ const Container = styled.div`
 
 const Body = styled.div`
   flex: 11;
-  overflow-y: scroll;
+  overflow-y: hidden;
   padding: 0 10% 0 10%;
 `;
 

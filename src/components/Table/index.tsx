@@ -10,6 +10,7 @@ import { colors } from "../../utils/styles/colors";
 // Redux
 import { fetchAddresses } from "../../store/actions";
 import { RootState } from "../../store";
+import InfiniteScroller from "../InfiniteScroller";
 
 type TableProps = {};
 
@@ -93,6 +94,7 @@ const TableRow = (props: TableRowProps) => {
 const Table = (_props: TableProps) => {
   const dispatch = useDispatch();
   const data = useSelector((store: RootState) => store.address.addresses.data);
+  const meta = useSelector((store: RootState) => store.address.addresses.meta);
 
   useEffect(() => {
     dispatch(fetchAddresses(0));
@@ -109,19 +111,34 @@ const Table = (_props: TableProps) => {
     "Suburb",
   ];
 
+  const loadMoreData = () => {
+    const { totalPages, currentPage } = meta as {
+      totalPages: number;
+      currentPage: number;
+    };
+    if (totalPages > currentPage) dispatch(fetchAddresses(currentPage + 1));
+  };
+
   return (
-    <>
-      <TableComponent>
-        <Row>
-          {headers.map((header, index) => (
-            <Header key={`${index}-${header}`}>{header}</Header>
-          ))}
-        </Row>
-        {data.map((addr) => {
-          return <TableRow key={addr.addressId} address={addr} />;
-        })}
-      </TableComponent>
-    </>
+    <InfiniteScroller
+      callback={loadMoreData}
+      children={
+        <TableComponent>
+          <thead>
+            <Row>
+              {headers.map((header, index) => (
+                <Header key={`${index}-${header}`}>{header}</Header>
+              ))}
+            </Row>
+          </thead>
+          <tbody>
+            {data.map((addr) => {
+              return <TableRow key={JSON.stringify(addr)} address={addr} />;
+            })}
+          </tbody>
+        </TableComponent>
+      }
+    />
   );
 };
 
