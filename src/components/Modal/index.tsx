@@ -43,6 +43,7 @@ const Modal = (props: ModalProps) => {
     app.style.overflow = "hidden";
     return () => (app.style.overflow = "unset");
   };
+
   // @ts-ignore
   useEffect(disableScroll, []);
 

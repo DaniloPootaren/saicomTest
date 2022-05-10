@@ -11,7 +11,7 @@ const App = () => {
   return (
     <div className="App">
       <Routes />
-      <ToastContainer />
+      <ToastContainer limit={1} />
     </div>
   );
 };

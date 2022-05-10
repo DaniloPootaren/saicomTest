@@ -7,7 +7,7 @@ type InfiniteScrollerProps = {
 };
 
 const InfiniteScrollerComponent = styled.div`
-  height: 90%;
+  height: 60%;
   overflow-y: auto;
 `;
 
