@@ -13,7 +13,7 @@ const ButtonComponent = styled.button`
   justify-content: space-around;
   align-items: center;
   height: 54px;
-  max-width: 130px;
+  width: 135px;
   outline: none;
   border: none;
   color: white;
@@ -23,6 +23,7 @@ const ButtonComponent = styled.button`
   font-size: 17px;
   border-radius: 3px;
   cursor: pointer;
+  margin: auto;
 
   ${(props) =>
     !props.disabled &&

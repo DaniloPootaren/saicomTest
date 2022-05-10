@@ -4,13 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 // components
 import Modal from "../Modal";
 import AddressForm from "../AddressForm";
+import InfiniteScroller from "../InfiniteScroller";
+import Loader from "../Loader"
 // utils, models etc..
 import { Address } from "../../models";
 import { colors } from "../../utils/styles/colors";
 // Redux
 import { fetchAddresses } from "../../store/actions";
 import { RootState } from "../../store";
-import InfiniteScroller from "../InfiniteScroller";
+
 
 type TableProps = {};
 
@@ -119,8 +121,8 @@ const Table = (_props: TableProps) => {
     if (totalPages > currentPage) dispatch(fetchAddresses(currentPage + 1));
   };
 
-  return (
-    <InfiniteScroller
+  return (<>
+  {data.length ?  <InfiniteScroller
       callback={loadMoreData}
       children={
         <TableComponent>
@@ -138,7 +140,9 @@ const Table = (_props: TableProps) => {
           </tbody>
         </TableComponent>
       }
-    />
+    /> : <Loader/>}
+   
+    </>
   );
 };
 

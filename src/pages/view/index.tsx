@@ -7,6 +7,7 @@ import { RootState } from "../../store";
 
 const View = () => {
   const loading = useSelector((store: RootState) => store.address.loading);
+  const data = useSelector((store: RootState) => store.address.addresses.data);
 
   useEffect(()=>{
     toast("Records loaded.", {
@@ -21,7 +22,7 @@ const View = () => {
 
   return (
     <Layout>
-      <h1>Addresses</h1>
+      <h1>{data.length ? "Addresses" : "No records found."}</h1>
       <Table />
     </Layout>
   );
