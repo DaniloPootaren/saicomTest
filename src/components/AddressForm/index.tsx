@@ -20,12 +20,15 @@ import { updateAddress } from "../../store/actions";
 type AddressFormProps = {
   initialValues?: Address;
   callback?: () => void;
+  noMargin?: boolean;
+  superkey?: string;
 };
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 5em;
+  
+  margin-top: ${(props:{noMargin?: boolean}) => props.noMargin ? 0 : '5em'}
   overflow-y: auto;
 
   @media ${device.laptop} {
@@ -46,7 +49,7 @@ const AddressForm = (props: AddressFormProps) => {
   const [countryOptions, setCountryOptions] = useState([] as string[]);
   const [provinces, setProvinces] = useState([] as any[]);
 
-  const { initialValues, callback } = props;
+  const { initialValues, callback, noMargin, superkey } = props;
 
   const defaultValues: Address = initialValues
     ? initialValues
@@ -102,7 +105,7 @@ const AddressForm = (props: AddressFormProps) => {
   }, [formik.values.country, initialValues ? data : null]);
 
   return (
-    <Container>
+    <Container noMargin={noMargin}>
       {data && provinces ? (
         <>
           <Dropdown
@@ -114,6 +117,7 @@ const AddressForm = (props: AddressFormProps) => {
             name="country"
             onChange={formik.handleChange}
             value={formik.values.country}
+            key={superkey}
           />
           <Input
             label="City"
@@ -134,6 +138,7 @@ const AddressForm = (props: AddressFormProps) => {
             onChange={formik.handleChange}
             value={formik.values.province}
             disabled={formik.values.country === ""}
+            key={superkey}
           />
           <Input
             label="Postal Code"
@@ -173,7 +178,7 @@ const AddressForm = (props: AddressFormProps) => {
           />
           <FormFooter>
             <Button
-              label="Continue"
+              label={initialValues ? 'Update': 'Create'}
               onClick={formik.handleSubmit}
               disabled={!formik.dirty}
             />

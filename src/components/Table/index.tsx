@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { nanoid } from 'nanoid';
+
 // components
 import Modal from "../Modal";
 import AddressForm from "../AddressForm";
@@ -49,6 +51,8 @@ const Row = styled.tr`
     background-color: #ddd;
   }
 `;
+
+
 
 const EditAddressDialog = (props: any) => {
   const { initialValues, onClose } = props;
@@ -134,7 +138,7 @@ const Table = (_props: TableProps) => {
               </thead>
               <tbody>
                 {data.map((addr) => {
-                  return <TableRow key={JSON.stringify(addr)} address={addr} />;
+                  return <TableRow key={nanoid()} address={addr} />;
                 })}
               </tbody>
             </TableComponent>

@@ -4,7 +4,6 @@ import icon from "../../assets/icons/chevron-down.png";
 import errorIcon from "../../assets/icons/exclamation.png";
 import { SelectHTMLAttributes } from "react";
 
-
 interface DropdownProps extends SelectHTMLAttributes<any> {
   placeholder: string;
   error: boolean;
@@ -12,6 +11,7 @@ interface DropdownProps extends SelectHTMLAttributes<any> {
   mandatory?: boolean;
   id: string;
   options: string[];
+  superkey?: string;
 }
 
 const Container = styled.div`
@@ -83,8 +83,15 @@ const ErrorMessage = styled.div`
 `;
 
 const Dropdown = (props: DropdownProps) => {
-  const { error, placeholder, errorMessage, id, options, ...selectAttrs } =
-    props;
+  const {
+    error,
+    placeholder,
+    errorMessage,
+    id,
+    options,
+    superkey,
+    ...selectAttrs
+  } = props;
   return (
     <Container>
       <div>
@@ -92,7 +99,10 @@ const Dropdown = (props: DropdownProps) => {
           <option value={""} disabled></option>
           {options.map((option, index) => {
             return (
-              <option value={option} key={`${index}-${option}`}>
+              <option
+                value={option}
+                key={`${superkey ? superkey : ""}${index}-${option}`}
+              >
                 {option}
               </option>
             );

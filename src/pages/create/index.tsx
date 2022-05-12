@@ -7,15 +7,15 @@ import {device} from "../../utils/styles/breakpoints"
 const StyledAddressForm = styled.div`
 
   @media ${device.laptop} {
-    margin: 7em 20em 0 20em;
+    margin: 2em 20em 0 20em;
   }
 `;
 
 const Create = () => {
   return (
     <Layout headerTitle="Add Address" showHeader>
-      <StyledAddressForm>
-        <AddressForm />
+      <StyledAddressForm >
+        <AddressForm noMargin />
       </StyledAddressForm>
     </Layout>
   );
