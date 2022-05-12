@@ -5,14 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Modal from "../Modal";
 import AddressForm from "../AddressForm";
 import InfiniteScroller from "../InfiniteScroller";
-import Loader from "../Loader"
+import Loader from "../Loader";
 // utils, models etc..
 import { Address } from "../../models";
 import { colors } from "../../utils/styles/colors";
 // Redux
 import { fetchAddresses } from "../../store/actions";
 import { RootState } from "../../store";
-
 
 type TableProps = {};
 
@@ -74,13 +73,12 @@ const TableRow = (props: TableRowProps) => {
   return (
     <>
       <Row key={address.addressId} onClick={() => setShowDialog(true)}>
-        <Cell>{address.addressId}</Cell>
+        <Cell>{address.country}</Cell>
+        <Cell>{address.province}</Cell>
         <Cell>{address.line1}</Cell>
         <Cell>{address.line2}</Cell>
         <Cell>{address.city}</Cell>
-        <Cell>{address.country}</Cell>
         <Cell>{address.postalCode}</Cell>
-        <Cell>{address.province}</Cell>
         <Cell>{address.suburb}</Cell>
       </Row>
       {showDialog ? (
@@ -103,13 +101,12 @@ const Table = (_props: TableProps) => {
   }, []);
 
   const headers: string[] = [
-    "Address Id",
+    "Country",
+    "Province",
     "Line 1",
     "Line 2",
     "City",
-    "Country",
     "Postal Code",
-    "Province",
     "Suburb",
   ];
 
@@ -121,27 +118,31 @@ const Table = (_props: TableProps) => {
     if (totalPages > currentPage) dispatch(fetchAddresses(currentPage + 1));
   };
 
-  return (<>
-  {data.length ?  <InfiniteScroller
-      callback={loadMoreData}
-      children={
-        <TableComponent>
-          <thead>
-            <Row>
-              {headers.map((header, index) => (
-                <Header key={`${index}-${header}`}>{header}</Header>
-              ))}
-            </Row>
-          </thead>
-          <tbody>
-            {data.map((addr) => {
-              return <TableRow key={JSON.stringify(addr)} address={addr} />;
-            })}
-          </tbody>
-        </TableComponent>
-      }
-    /> : <Loader/>}
-   
+  return (
+    <>
+      {data.length ? (
+        <InfiniteScroller
+          callback={loadMoreData}
+          children={
+            <TableComponent>
+              <thead>
+                <Row>
+                  {headers.map((header, index) => (
+                    <Header key={`${index}-${header}`}>{header}</Header>
+                  ))}
+                </Row>
+              </thead>
+              <tbody>
+                {data.map((addr) => {
+                  return <TableRow key={JSON.stringify(addr)} address={addr} />;
+                })}
+              </tbody>
+            </TableComponent>
+          }
+        />
+      ) : (
+        <Loader />
+      )}
     </>
   );
 };

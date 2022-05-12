@@ -1,8 +1,9 @@
-import { ReactElement, useEffect, useRef } from "react";
+import { ReactElement, useEffect } from "react";
 import styled from "styled-components";
 
 import { colors } from "../../utils/styles/colors";
 import icon from "../../assets/icons/close.png";
+import { device } from "../../utils/styles/breakpoints";
 
 type ModalProps = {
   children: ReactElement;
@@ -26,6 +27,12 @@ const Content = styled.div`
   width: 40em;
   margin: auto;
   padding: 26px 50px 10px 10px;
+
+
+  @media ${device.mobileM} {
+    padding: 26px 22px 0px 13px;
+  }
+
 `;
 
 const ClosingContainer = styled.div`

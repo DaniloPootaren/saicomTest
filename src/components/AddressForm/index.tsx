@@ -7,9 +7,11 @@ import { useNavigate } from "react-router-dom";
 import Input from "../Input";
 import Dropdown from "../Dropdown";
 import Button from "../Button";
+import Loader from "../Loader";
 
 import { validationSchema } from "./validationSchema";
 import { Address, Country } from "../../models";
+import { device } from "../../utils/styles/breakpoints";
 
 import api from "../../api";
 
@@ -23,6 +25,17 @@ type AddressFormProps = {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 5em;
+  overflow-y: auto;
+
+  @media ${device.laptop} {
+    margin-top: 0;
+  }
+`;
+
+const FormFooter = styled.div`
+  display: flex;
+  height: 6em;
 `;
 
 const AddressForm = (props: AddressFormProps) => {
@@ -80,42 +93,27 @@ const AddressForm = (props: AddressFormProps) => {
 
   useEffect(() => {
     data.forEach((country: Country) => {
-      if (country.name === formik.values.country.split(",")[1].trim()) {
-        setProvinces(country.provinces.map((a) => `${a.code}, ${a.name}`));
+      if (formik.values.country?.split(",")[1]?.trim()) {
+        if (country.name === formik.values.country.split(",")[1].trim()) {
+          setProvinces(country.provinces.map((a) => `${a.code}, ${a.name}`));
+        }
       }
     });
   }, [formik.values.country, initialValues ? data : null]);
 
   return (
     <Container>
-      {data && (
+      {data && provinces ? (
         <>
-          <Input
-            label="Line 1"
-            error={!!formik.errors.line1}
-            errorMessage={formik.errors.line1}
-            mandatory
-            name="line1"
+          <Dropdown
+            options={countryOptions}
+            error={!!formik.errors.country}
+            id="country"
+            placeholder="Country"
+            errorMessage={formik.errors.country}
+            name="country"
             onChange={formik.handleChange}
-            value={formik.values.line1}
-          />
-          <Input
-            label="Line 2"
-            error={!!formik.errors.line2}
-            errorMessage={formik.errors.line2}
-            mandatory
-            name="line2"
-            onChange={formik.handleChange}
-            value={formik.values.line2}
-          />
-          <Input
-            label="Suburb"
-            error={!!formik.errors.suburb}
-            errorMessage={formik.errors.suburb}
-            mandatory
-            name="suburb"
-            onChange={formik.handleChange}
-            value={formik.values.suburb}
+            value={formik.values.country}
           />
           <Input
             label="City"
@@ -146,22 +144,43 @@ const AddressForm = (props: AddressFormProps) => {
             onChange={formik.handleChange}
             value={formik.values.postalCode}
           />
-          <Dropdown
-            options={countryOptions}
-            error={!!formik.errors.country}
-            id="country"
-            placeholder="Country"
-            errorMessage={formik.errors.country}
-            name="country"
+          <Input
+            label="Line 1"
+            error={!!formik.errors.line1}
+            errorMessage={formik.errors.line1}
+            mandatory
+            name="line1"
             onChange={formik.handleChange}
-            value={formik.values.country}
+            value={formik.values.line1}
           />
-          <Button
-            label="Continue"
-            onClick={formik.handleSubmit}
-            disabled={!formik.dirty}
+          <Input
+            label="Line 2"
+            error={!!formik.errors.line2}
+            errorMessage={formik.errors.line2}
+            mandatory
+            name="line2"
+            onChange={formik.handleChange}
+            value={formik.values.line2}
           />
+          <Input
+            label="Suburb"
+            error={!!formik.errors.suburb}
+            errorMessage={formik.errors.suburb}
+            mandatory
+            name="suburb"
+            onChange={formik.handleChange}
+            value={formik.values.suburb}
+          />
+          <FormFooter>
+            <Button
+              label="Continue"
+              onClick={formik.handleSubmit}
+              disabled={!formik.dirty}
+            />
+          </FormFooter>
         </>
+      ) : (
+        <Loader />
       )}
     </Container>
   );

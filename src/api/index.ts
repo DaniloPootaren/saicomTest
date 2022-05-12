@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Address } from "../models";
 
-const BASE_URL = "http://localhost:4200";
+const BASE_URL = "http://localhost:8080";
 
 const loadCountries = (): Promise<any> => {
   return axios.get(`${BASE_URL}/country`).then((data) => data);

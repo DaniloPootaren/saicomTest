@@ -17,21 +17,25 @@ const Container = styled.div`
 
 const Body = styled.div`
   flex: 11;
-  overflow-y: hidden;
+  overflow: hidden;
   padding: 0 10% 0 10%;
+
+  @media ${device.mobileM} {
+    overflow-y: auto;
+  }
 `;
 
 const Header = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
   top: 0;
   width: 100%;
-  height: 45px;
+  height: 70px;
   background-color: #0078d4;
   color: #ffff;
   font-size: 14px;
+  margin-bottom: 10px;
 
   @media ${device.laptop} {
     font-size: inherit;
@@ -59,7 +63,6 @@ const Layout = (props: LayoutProps) => {
       {showHeader && renderHeader()}
       <Body>{children}</Body>
       {showFooter && <Footer>Footer</Footer>}
-      
     </Container>
   );
 };

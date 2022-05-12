@@ -21,7 +21,7 @@ const View = () => {
   }, [loading])
 
   return (
-    <Layout>
+    <Layout headerTitle="View all addresses" showHeader>
       <h1>{data.length ? "Addresses" : "No records found."}</h1>
       <Table />
     </Layout>
